@@ -1,5 +1,7 @@
 # Blockchain en Educación: Taller Teórico de Seguridad  en Entornos Virtuales Educativos (EVA)
 
+[ROADMAP](./ROADMAP.md)
+
 # 📘 Justificación Pedagógica del Programa
 
 ## 1. Fundamentación
