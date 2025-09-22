@@ -327,3 +327,80 @@ openssl base64 -in documento.sig -out documento.sig.b64
 # Verificar
 openssl dgst -sha256 -verify alumno.pub.pem -signature documento.sig documento.pdf
 ```
+
+## 🧩 ¿Qué hace este comando? (En lenguaje simple)
+```bash
+openssl dgst -sha256 -verify alumno.pub.pem -signature documento.sig documento.pdf
+```
+
+---
+
+> **Este comando es como un "detector de mentiras" para archivos.**  
+> Verifica si el archivo PDF que tienes **realmente fue firmado por la persona que dice haberlo firmado**, y que **nadie lo ha modificado desde entonces**.
+
+---
+
+## 🧑‍🏫 Explicación paso a paso (para adolescentes):
+
+### 1. **`openssl dgst -sha256`**
+- **OpenSSL** es como una caja de herramientas de seguridad digital.
+- **`dgst`** significa “digest” (resumen). Es como tomar una huella digital única del archivo.
+- **`-sha256`** es el tipo de huella digital. Es un algoritmo súper confiable que convierte cualquier archivo en una cadena de letras y números irrepetible (como un código de barras único).
+
+> 🍕 Imagina que tienes una pizza. SHA-256 es como tomar una foto de esa pizza desde arriba y convertirla en un código único. Si le quitas una aceituna, ¡el código cambia completamente!
+
+---
+
+### 2. **`-verify alumno.pub.pem`**
+- Aquí le dices: “Quiero verificar usando la **clave pública** de alguien (en este caso, del archivo `alumno.pub.pem`)”.
+- La clave pública es como la **huella dactilar pública** de una persona. Cualquiera la puede tener, pero solo sirve para verificar cosas que esa persona firmó con su clave privada (que es como su contraseña secreta).
+
+> 🤳 Es como si alguien publicara su selfie en Instagram. Tú puedes usar ese selfie para verificar si una foto tuya con esa persona es real. Pero no puedes usar el selfie para *hacerte pasar* por esa persona.
+
+---
+
+### 3. **`-signature documento.sig`**
+- Este es el archivo que contiene la **firma digital**. No es una firma manuscrita, sino un código matemático generado con la clave privada del firmante.
+- Es como el **sello de cera con el anillo del rey** en las películas medievales. Solo el rey tiene ese anillo (clave privada), y cualquiera puede verificar que el sello es auténtico con una copia del molde (clave pública).
+
+> 📜 Si alguien falsifica el documento, el sello no coincidirá, ¡y el comando lo detectará!
+
+---
+
+### 4. **`documento.pdf`**
+- Este es el archivo original que quieres verificar.
+- El comando va a calcular su huella digital (SHA-256) y compararla con la que está guardada dentro de la firma (`documento.sig`).
+
+> 🧩 Es como armar un rompecabezas: si el documento fue modificado, las piezas ya no encajan.
+
+---
+
+## ✅ ¿Qué pasa cuando ejecutas el comando?
+
+- Si **TODO está correcto** (el PDF no fue modificado + la firma corresponde a la clave pública), verás:
+  ```
+  Verified OK
+  ```
+  👉 ¡Éxito! El documento es auténtico e íntegro.
+
+- Si **algo está mal** (el PDF fue editado, o la firma no coincide), verás:
+  ```
+  Verification Failure
+  ```
+  👉 ¡Alerta! Algo no cuadra. O el documento fue alterado, o la firma es falsa, o estás usando la clave pública equivocada.
+
+---
+
+## 🧠 Analogía Final (para que nunca lo olvides):
+
+> Imagina que tu amigo te envía un mensaje secreto dentro de una caja fuerte con un candado especial.  
+> Él tiene la **llave privada** (solo él la tiene) para cerrar la caja.  
+> Tú tienes la **llave pública** (que él te dio) para *abrir* la caja y ver si el mensaje es realmente de él.  
+> Si alguien cambió el mensaje y volvió a cerrar la caja con otro candado, ¡tu llave no abrirá la caja!  
+> Eso es exactamente lo que hace este comando: **verifica que el “candado” (firma) coincide con la “llave pública” y que el “mensaje” (PDF) no fue alterado.**
+
+---
+
+✅ **En resumen para un adolescente:**
+
+> Este comando revisa si un PDF es original y si fue firmado por quien dice haberlo firmado. Usa una “huella digital” del archivo y una “llave pública” para comprobarlo. Si todo coincide, dice “Verified OK”. Si no, grita “¡FRAUDE!” con un “Verification Failure”.
