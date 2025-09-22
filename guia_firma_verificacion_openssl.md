@@ -328,7 +328,7 @@ openssl base64 -in documento.sig -out documento.sig.b64
 openssl dgst -sha256 -verify alumno.pub.pem -signature documento.sig documento.pdf
 ```
 
-## 🧩 ¿Qué hace este comando? (En lenguaje simple)
+## 🧩 ¿Qué hace este comando? (En lenguaje simple) [paso 7.3](#-paso-7--verificar-la-firma-receptor)
 ```bash
 openssl dgst -sha256 -verify alumno.pub.pem -signature documento.sig documento.pdf
 ```
