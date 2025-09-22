@@ -83,9 +83,9 @@ openssl dgst -sha256 -verify mi_certificado.pem -signature mensaje.sig mensaje.t
 
 ---
 
-## **5️⃣ Mini laboratorio: HTTPS local (10 min)** 
+## **5️⃣ Mini laboratorio: HTTPS local (10 min)**
 
-### ✅ Opción 1: Usa un [script Python](./demo_crt_autosign_https_server.py) personalizado con SSL
+### ✅ Opción 1: Usa un [script Python](./demo_2_crt_autosign_https_server.py) personalizado con SSL
 
 #### 📌 Requisitos:
 - Necesitas tener el certificado **`alumno.crt`** (generado en el Paso 3 de la guía [guia_firma_verificacion_openssl.md](./guia_firma_verificacion_openssl.md)).
