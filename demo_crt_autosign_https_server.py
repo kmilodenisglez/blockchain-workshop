@@ -1,4 +1,12 @@
 # https_server.py
+"""
+Si solo quieres servir un archivo o directorio con HTTPS rápidamente, puedes usar OpenSSL directamente:
+
+openssl s_server -key alumno.key -cert alumno.crt -port 8443 -www
+
+Luego abre: https://localhost:8443
+Nota: -www hace que OpenSSL sirva archivos estáticos del directorio actual. Es muy básico, pero útil para pruebas.
+"""
 import http.server
 import ssl
 import sys
