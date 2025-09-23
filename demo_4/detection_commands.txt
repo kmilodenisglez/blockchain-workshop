@@ -1,0 +1,26 @@
+Instalar las dependencias:
+sudo apt install mupdf mupdf-tools qpdf
+
+
+
+Suggested Linux commands to detect incremental updates and inspect PDFs:
+
+1) Count startxref / %%EOF markers (simple):
+   grep -a -o 'startxref' pdf_attacked_incremental_concat.pdf | wc -l
+   grep -a -o '%%EOF' pdf_attacked_incremental_concat.pdf | wc -l
+
+2) Use qpdf to check structure (install qpdf):
+   qpdf --check pdf_attacked_incremental_concat.pdf
+
+3) Use mutool (from mupdf) to show PDF info:
+   mutool info pdf_attacked_incremental_concat.pdf
+
+4) Use Didier Stevens' tools (pdfid.py / pdf-parser.py) for deep inspection:
+   pdfid.py <file.pdf>
+   python pdf-parser.py --search 'startxref' pdf_attacked_incremental_concat.pdf
+
+5) Use simple grep/strings to spot multiple EOFs or startxref markers.
+
+Notes:
+- Appending PDF bytes will generally increase the 'startxref' and '%%EOF' counts.
+- Different PDF viewers may behave differently: some show the first PDF, some may show the last concatenated one, or merge views depending on how they parse xref tables.
