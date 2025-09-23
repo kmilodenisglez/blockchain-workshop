@@ -17,7 +17,7 @@ Suggested Linux commands to detect incremental updates and inspect PDFs:
 
 4) Use Didier Stevens' tools (pdfid.py / pdf-parser.py) for deep inspection:
    pdfid.py <file.pdf>
-   python pdf-parser.py --search 'startxref' pdf_attacked_incremental_concat.pdf
+   python script-pdf-parser.py --search 'startxref' pdf_attacked_incremental_concat.pdf
 
 5) Use simple grep/strings to spot multiple EOFs or startxref markers.
 
